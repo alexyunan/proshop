@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Rating from "../Components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import Loader from "../Components/Loader";
+import Message from "../Components/Message";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -21,7 +22,9 @@ const ProductScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <Row>
           <Col md={5}>
